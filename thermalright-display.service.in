@@ -1,0 +1,16 @@
+[Unit]
+Description=Thermalright AMD GPU display monitor
+After=systemd-udevd.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=@USER@
+SupplementaryGroups=plugdev
+ExecStart=/usr/bin/python3 /opt/thermalright-gpu-monitor/tr_display.py --write --quiet
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
